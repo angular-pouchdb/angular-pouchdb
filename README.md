@@ -26,10 +26,12 @@ A lightweight AngularJS service for PouchDB that;
     angular.module('app', ['pouchdb']);
     ```
 
-3. Inject the `pouchdb` service in your app:
+3. Inject the `PouchDB` service in your app:
 
     ```js
-    angular.service('service', function(pouchdb) {});
+    angular.service('service', function(PouchDB) {
+      var db = new PouchDB('name');
+    });
     ```
 
 ## Authors
