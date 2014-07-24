@@ -1,0 +1,38 @@
+{
+  "name": "angular-pouchdb",
+  "version": "1.0.0",
+  "authors": [
+    "Wilfred Springer <wilfredspringer@gmail.com>",
+    "Tom Vincent <http://tlvince.com/contact>"
+  ],
+  "description": "AngularJS wrapper for PouchDB",
+  "main": "angular-pouchdb.js",
+  "keywords": [
+    "angularjs",
+    "pouchdb"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/angular-pouchdb/angular-pouchdb",
+  "ignore": [
+    "**/.*",
+    "karma.conf.js",
+    "node_modules",
+    "bower_components",
+    "test",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": "~1.2.20",
+    "pouchdb": "~2.2.3"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.2.20",
+    "es5-shim": "~4.0.1",
+    "jasmine-as-promised": "~0.0.8"
+  },
+  "overrides": {
+    "jasmine-as-promised": {
+      "dependencies": {}
+    }
+  }
+}
