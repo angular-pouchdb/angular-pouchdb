@@ -75,4 +75,13 @@ describe('Angular PouchDB', function() {
         });
     });
   });
+
+  afterEach(function() {
+    runs(function() {
+      return db.destroy()
+        .then(function(result) {
+          expect(result.ok).toBe(true);
+        });
+    });
+  });
 });
