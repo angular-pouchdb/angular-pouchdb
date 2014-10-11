@@ -1,4 +1,5 @@
 'use strict';
+/*eslint-env node */
 
 var bowerJS = require('wiredep')({
   devDependencies: true
