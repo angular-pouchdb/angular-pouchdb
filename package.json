@@ -4,9 +4,9 @@
   "description": "AngularJS wrapper for PouchDB",
   "main": "angular-pouchdb.js",
   "scripts": {
-    "lint": "./node_modules/eslint/bin/eslint.js *.js test/*.js",
-    "test": "./node_modules/karma/bin/karma start",
-    "watch": "./node_modules/karma/bin/karma start --autoWatch true --singleRun false"
+    "lint": "eslint *.js test/*.js",
+    "test": "karma start",
+    "watch": "karma start --autoWatch true --singleRun false"
   },
   "repository": {
     "type": "git",
@@ -24,7 +24,8 @@
   "homepage": "https://github.com/angular-pouchdb/angular-pouchdb",
   "devDependencies": {
     "eslint": "^0.8.2",
-    "karma": "^0.12.17",
+    "karma": "^0.12.24",
+    "karma-cli": "0.0.4",
     "karma-jasmine": "^0.1.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "wiredep": "^1.8.2"
