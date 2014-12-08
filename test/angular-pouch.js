@@ -4,8 +4,8 @@ describe('Angular PouchDB', function() {
   beforeEach(module('pouchdb'));
 
   var db;
-  beforeEach(inject(function(PouchDB) {
-    db = new PouchDB('db');
+  beforeEach(inject(function(pouchDB) {
+    db = pouchDB('db');
   }));
 
   function allKeys(obj) {

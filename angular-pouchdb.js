@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('pouchdb', [])
-  .factory('PouchDB', function($q, $rootScope, $window) {
+  .factory('pouchDB', function($q, $rootScope, $window) {
     function qify(fn) {
       return function() {
         var deferred = $q.defer();
@@ -42,7 +42,7 @@ angular.module('pouchdb', [])
       'revsDiff'
     ];
 
-    return function PouchDB(name, options) {
+    return function pouchDB(name, options) {
       var db = new $window.PouchDB(name, options);
 
       var api = {};
