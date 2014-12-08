@@ -9,9 +9,8 @@ angular.module('pouchdb', [])
           return $rootScope.$apply(function() {
             if (err) {
               return deferred.reject(err);
-            } else {
-              return deferred.resolve(res);
             }
+            return deferred.resolve(res);
           });
         }
         var args = [];
@@ -63,7 +62,7 @@ angular.module('pouchdb', [])
 
       api.replicate = {
         to: db.replicate.to.bind(db),
-        from: db.replicate.from.bind(db),
+        from: db.replicate.from.bind(db)
       };
 
       return api;
