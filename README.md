@@ -34,6 +34,8 @@ A lightweight AngularJS service for PouchDB that;
     });
     ```
 
+See [examples](examples) for further usage examples.
+
 ## Authors
 
 * © 2013-2014 Wilfred Springer <http://nxt.flotsam.nl>
