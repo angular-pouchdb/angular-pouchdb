@@ -36,6 +36,21 @@ A lightweight AngularJS service for PouchDB that;
 
 See [examples](examples) for further usage examples.
 
+## Options
+
+The list of methods to be wrapped with `$q` can be customised by injecting the
+`pouchDBProvider` in an `angular.config` block, for example:
+
+```js
+.config(function(pouchDBProvider, POUCHDB_DEFAULT_METHODS) {
+  pouchDBProvider.methods = POUCHDB_DEFAULT_METHODS.concat([
+    'login'
+  ]);
+})
+```
+
+See the [plugin example](examples/plugins) for a working example.
+
 ## Authors
 
 * © 2013-2014 Wilfred Springer <http://nxt.flotsam.nl>
