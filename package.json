@@ -4,11 +4,12 @@
   "description": "AngularJS wrapper for PouchDB",
   "main": "angular-pouchdb.js",
   "scripts": {
-    "build": "mkdir -p dist",
-    "annotate": "ng-annotate -a angular-pouchdb.js > dist/angular-pouchdb.js",
+    "annotate": "ng-annotate -a - > dist/angular-pouchdb.js",
+    "build": "mkdir -p dist && npm --silent run wrap | npm run annotate",
     "lint": "eslint *.js test/*.js",
     "test": "karma start",
-    "watch": "karma start --autoWatch true --singleRun false"
+    "watch": "karma start --autoWatch true --singleRun false",
+    "wrap": "cat prefix.js angular-pouchdb.js suffix.js"
   },
   "repository": {
     "type": "git",

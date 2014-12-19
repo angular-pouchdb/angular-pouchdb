@@ -1,3 +1,4 @@
+(function(window, angular, undefined) {
 'use strict';
 
 angular.module('pouchdb', [])
@@ -71,3 +72,4 @@ angular.module('pouchdb', [])
       };
     }];
   }]);
+})(window, window.angular);
