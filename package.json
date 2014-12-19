@@ -4,6 +4,8 @@
   "description": "AngularJS wrapper for PouchDB",
   "main": "angular-pouchdb.js",
   "scripts": {
+    "build": "mkdir -p dist",
+    "annotate": "ng-annotate -a angular-pouchdb.js > dist/angular-pouchdb.js",
     "lint": "eslint *.js test/*.js",
     "test": "karma start",
     "watch": "karma start --autoWatch true --singleRun false"
@@ -28,6 +30,7 @@
     "karma-cli": "0.0.4",
     "karma-jasmine": "^0.1.5",
     "karma-phantomjs-launcher": "^0.1.4",
+    "ng-annotate": "^0.14.1",
     "wiredep": "^1.8.2"
   }
 }

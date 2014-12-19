@@ -6,7 +6,7 @@
     "Tom Vincent <http://tlvince.com/contact>"
   ],
   "description": "AngularJS wrapper for PouchDB",
-  "main": "angular-pouchdb.js",
+  "main": "dist/angular-pouchdb.js",
   "keywords": [
     "angularjs",
     "pouchdb"
@@ -14,12 +14,11 @@
   "license": "MIT",
   "homepage": "https://github.com/angular-pouchdb/angular-pouchdb",
   "ignore": [
+    "**/*",
     "**/.*",
-    "karma.conf.js",
-    "node_modules",
-    "bower_components",
-    "test",
-    "package.json"
+    "!README.md",
+    "!LICENSE.md",
+    "!dist"
   ],
   "dependencies": {
     "angular": "~1.2.25",
