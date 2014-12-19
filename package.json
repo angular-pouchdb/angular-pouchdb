@@ -5,11 +5,12 @@
   "main": "angular-pouchdb.js",
   "scripts": {
     "annotate": "ng-annotate -a - > dist/angular-pouchdb.js",
-    "build": "mkdir -p dist && npm --silent run wrap | npm run annotate",
+    "build": "mkdir -p dist && npm --silent run wrap | npm run annotate && npm run uglify",
     "lint": "eslint *.js test/*.js",
     "test": "karma start",
     "watch": "karma start --autoWatch true --singleRun false",
-    "wrap": "cat prefix.js angular-pouchdb.js suffix.js"
+    "wrap": "cat prefix.js angular-pouchdb.js suffix.js",
+    "uglify": "uglifyjs dist/angular-pouchdb.js -mc > dist/angular-pouchdb.min.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +33,7 @@
     "karma-jasmine": "^0.1.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "ng-annotate": "^0.14.1",
+    "uglify-js": "^2.4.16",
     "wiredep": "^1.8.2"
   }
 }
