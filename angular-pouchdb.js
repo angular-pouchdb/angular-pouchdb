@@ -21,53 +21,29 @@ angular.module('pouchdb', [])
   ])
   .provider('pouchDB', function(POUCHDB_DEFAULT_METHODS) {
     this.methods = POUCHDB_DEFAULT_METHODS;
-    this.$get = function($q, $window, $rootScope) {
+    this.$get = function($q, $window) {
       var methods = this.methods;
+
       function qify(fn) {
         return function() {
-          var deferred = $q.defer();
-          function callback(err, res) {
-            return $rootScope.$apply(function() {
-              if (err) {
-                return deferred.reject(err);
-              }
-              return deferred.resolve(res);
-            });
-          }
-          var args = [];
-          if (arguments !== null) {
-            args = Array.prototype.slice.call(arguments);
-          }
-          args.push(callback);
-          fn.apply(this, args);
-          return deferred.promise;
+          return $q.when(fn.apply(this, arguments));
         };
       }
 
       return function pouchDB(name, options) {
         var db = new $window.PouchDB(name, options);
 
-        var api = {};
-        methods.forEach(function(method) {
-          api[method] = qify(db[method].bind(db));
-        });
+        function wrap(method) {
+          db[method] = qify(db[method]);
+        }
 
-        api.changes = function(options) {
-          var clone = angular.copy(options);
-          clone.onChange = function(change) {
-            return $rootScope.$apply(function() {
-              return options.onChange(change);
-            });
-          };
-          return db.changes(clone);
-        };
+        methods.forEach(wrap);
 
-        api.replicate = {
-          to: db.replicate.to.bind(db),
-          from: db.replicate.from.bind(db)
-        };
+        // Outlying nested methods
+        db.replicate.to = qify(db.replicate.to);
+        db.replicate.from = qify(db.replicate.from);
 
-        return api;
+        return db;
       };
     };
   });

@@ -1,89 +1,98 @@
 'use strict';
 
-describe('Angular PouchDB', function() {
-  beforeEach(module('pouchdb'));
+var self = this;
 
+describe('angular-pouchdb', function() {
   var db;
-  beforeEach(inject(function(pouchDB) {
-    db = pouchDB('db');
-  }));
 
-  function allKeys(obj) {
-    var keys = [];
-    // Include everything in the prototype chain
-    for (var key in obj) {
-      keys.push(key);
-    }
-    return keys;
+  function shouldBeOK(response) {
+    expect(response.ok).toBe(true);
   }
 
-  it('should not introduce new instance methods', function() {
+  function shouldNotBeCalled(rejection) {
+    self.fail(rejection);
+  }
 
-    var $window;
-    inject(function(_$window_) {
-      $window = _$window_;
-    });
+  function shouldBeMissing(response) {
+    expect(response.status).toBe(404);
+  }
 
-    var raw = new $window.PouchDB('raw');
-    var rawKeys = allKeys(raw);
-
-    var dbKeys = allKeys(db);
-
-    var result = dbKeys.every(function(key) {
-      return rawKeys.indexOf(key) !== -1;
-    });
-
-    expect(result).toBe(true);
+  beforeEach(function() {
+    // https://github.com/ocombe/angular-localForage/issues/27#issuecomment-54844116
+    // because(?) https://github.com/angular/angular.js/issues/2881#issuecomment-39017671
+    var $injector = angular.injector(['ng', 'pouchdb']);
+    var pouchDB = $injector.get('pouchDB');
+    db = pouchDB('db');
   });
 
-  it('should include all known public methods', function() {
-    var methods = [
-      'destroy',
-      'put',
-      'post',
-      'get',
-      'remove',
-      'bulkDocs',
-      'allDocs',
-      'changes',
-      'replicate',
-      'sync',
-      'putAttachment',
-      'getAttachment',
-      'removeAttachment',
-      'query',
-      'viewCleanup',
-      'info',
-      'compact',
-      'revsDiff'
-    ];
-
-    var dbKeys = allKeys(db);
-
-    var result = methods.every(function(method) {
-      return dbKeys.indexOf(method) !== -1;
+  describe('PouchDB public API', function() {
+    it('should monkey patch PouchDB#destroy', function(done) {
+      db.destroy()
+        .then(shouldBeOK)
+        .catch(shouldNotBeCalled)
+        .finally(done);
     });
 
-    expect(result).toBe(true);
-    expect(db.replicate.to).toBeDefined();
-    expect(db.replicate.from).toBeDefined();
+    it('should monkey patch PouchDB#put', function(done) {
+      db.put({_id: '1'})
+        .then(shouldBeOK)
+        .catch(shouldNotBeCalled)
+        .finally(done);
+    });
+
+    it('should monkey patch PouchDB#post', function(done) {
+      db.post({})
+        .then(shouldBeOK)
+        .catch(shouldNotBeCalled)
+        .finally(done);
+    });
+
+    it('should monkey patch PouchDB#get', function(done) {
+      db.get('')
+        .then(shouldNotBeCalled)
+        .catch(shouldBeMissing)
+        .finally(done);
+    });
+
+    it('should monkey patch PouchDB#remove', function(done) {
+      db.remove('')
+        .then(shouldNotBeCalled)
+        .catch(shouldBeMissing)
+        .finally(done);
+    });
+
+    it('should monkey patch PouchDB#info', function(done) {
+      function success(response) {
+        expect(response.db_name).toBe('db');
+      }
+      db.info()
+        .then(success)
+        .catch(shouldNotBeCalled)
+        .finally(done);
+    });
   });
 
-  it('should resolve a DB post', function() {
-    runs(function() {
-      return db.post({})
-        .then(function(result) {
-          expect(result.ok).toBe(true);
-        });
-    });
+  it('should pass through rejections', function(done) {
+    function errorHandler(rejection) {
+      expect(rejection).toBeDefined();
+    }
+    db.put()
+      .then(shouldNotBeCalled)
+      .catch(errorHandler)
+      .finally(done);
   });
 
-  afterEach(function() {
-    runs(function() {
-      return db.destroy()
-        .then(function(result) {
-          expect(result.ok).toBe(true);
-        });
-    });
+  afterEach(function(done) {
+    function tearDown($window) {
+      // Use raw PouchDB (and callback) as a sanity check
+      $window.PouchDB.destroy('db', function(err, info) {
+        if (err) {
+          throw err;
+        }
+        expect(info.ok).toBe(true);
+        done();
+      });
+    }
+    inject(tearDown);
   });
 });
