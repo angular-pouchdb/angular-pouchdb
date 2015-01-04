@@ -146,6 +146,13 @@ describe('angular-pouchdb', function() {
       .finally(done);
   });
 
+  it('should expose a list of wrapped methods', function() {
+    module('pouchdb');
+    inject(function(POUCHDB_DEFAULT_METHODS) {
+      expect(angular.isArray(POUCHDB_DEFAULT_METHODS)).toBe(true);
+    });
+  });
+
   afterEach(function(done) {
     function tearDown($window) {
       // Use raw PouchDB (and callback) as a sanity check
