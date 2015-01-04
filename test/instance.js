@@ -2,7 +2,7 @@
 
 var self = this;
 
-describe('angular-pouchdb', function() {
+describe('angular-pouchdb instance', function() {
   var db;
 
   function shouldBeOK(response) {
@@ -144,19 +144,6 @@ describe('angular-pouchdb', function() {
       .then(shouldNotBeCalled)
       .catch(errorHandler)
       .finally(done);
-  });
-
-  it('should expose a list of wrapped methods', function() {
-    module('pouchdb');
-    inject(function(POUCHDB_DEFAULT_METHODS) {
-      expect(angular.isArray(POUCHDB_DEFAULT_METHODS)).toBe(true);
-    });
-  });
-
-  it('should expose a methods property', function() {
-    module('pouchdb', function(pouchDBProvider) {
-      expect(pouchDBProvider.methods).toBeDefined();
-    });
   });
 
   afterEach(function(done) {
