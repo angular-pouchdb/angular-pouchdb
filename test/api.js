@@ -97,6 +97,22 @@ describe('Angular-aware PouchDB public API', function() {
     inject(rawPut);
   });
 
+  it('should wrap putAttachment', function() {
+    self.fail('Spec unimplemented');
+  });
+
+  it('should wrap getAttachment', function() {
+    self.fail('Spec unimplemented');
+  });
+
+  it('should wrap removeAttachment', function() {
+    self.fail('Spec unimplemented');
+  });
+
+  it('should wrap query', function() {
+    self.fail('Spec unimplemented');
+  });
+
   it('should wrap viewCleanup', function(done) {
     db.viewCleanup()
       .then(shouldBeOK)
