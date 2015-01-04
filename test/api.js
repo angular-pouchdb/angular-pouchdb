@@ -17,6 +17,20 @@ describe('Angular-aware PouchDB public API', function() {
     expect(response.status).toBe(404);
   }
 
+  function rawPut(cb) {
+    function put($window) {
+      var rawDB = new $window.PouchDB('db');
+      var doc = {_id: 'test'};
+      rawDB.put(doc, function(err, result) {
+        if (err) {
+          throw err;
+        }
+        cb(result);
+      });
+    }
+    inject(put);
+  }
+
   beforeEach(function() {
     var $injector = angular.injector(['ng', 'pouchdb']);
     var pouchDB = $injector.get('pouchDB');
@@ -83,22 +97,22 @@ describe('Angular-aware PouchDB public API', function() {
         .finally(done);
     }
 
-    function rawPut($window) {
-      var rawDB = new $window.PouchDB('db');
-      var doc = {_id: 'test'};
-      rawDB.put(doc, function(err) {
-        if (err) {
-          throw err;
-        }
-        allDocs();
-      });
-    }
-
-    inject(rawPut);
+    rawPut(allDocs);
   });
 
-  it('should wrap putAttachment', function() {
-    self.fail('Spec unimplemented');
+  it('should wrap putAttachment', function(done) {
+    function putAttachment(putDocResult) {
+      var id = putDocResult.id;
+      var rev = putDocResult.rev;
+      var attachment = new Blob(['test']);
+
+      db.putAttachment(id, 'test', rev, attachment, 'text/plain')
+        .then(shouldBeOK)
+        .catch(shouldNotBeCalled)
+        .finally(done);
+    }
+
+    rawPut(putAttachment);
   });
 
   it('should wrap getAttachment', function() {

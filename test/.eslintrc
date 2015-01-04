@@ -3,3 +3,4 @@ env:
 globals:
   module: false
   inject: false
+  Blob: false
