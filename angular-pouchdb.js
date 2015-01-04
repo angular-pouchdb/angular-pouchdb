@@ -9,7 +9,6 @@ angular.module('pouchdb', [])
     'remove',
     'bulkDocs',
     'allDocs',
-    'sync',
     'putAttachment',
     'getAttachment',
     'removeAttachment',
@@ -32,17 +31,10 @@ angular.module('pouchdb', [])
 
       return function pouchDB(name, options) {
         var db = new $window.PouchDB(name, options);
-
         function wrap(method) {
           db[method] = qify(db[method]);
         }
-
         methods.forEach(wrap);
-
-        // Outlying nested methods
-        db.replicate.to = qify(db.replicate.to);
-        db.replicate.from = qify(db.replicate.from);
-
         return db;
       };
     };
