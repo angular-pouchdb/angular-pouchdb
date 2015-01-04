@@ -13,4 +13,15 @@ describe('angular-pouchdb provider', function() {
       expect(pouchDBProvider.methods).toBeDefined();
     });
   });
+
+  it('should support a custom methods list', function() {
+    module('pouchdb', function(pouchDBProvider) {
+      pouchDBProvider.methods = ['info'];
+    });
+    inject(function(pouchDB) {
+      var db = pouchDB('db');
+      expect(db.info().finally).toBeDefined();
+      expect(db.put().finally).toBeUndefined();
+    });
+  });
 });
