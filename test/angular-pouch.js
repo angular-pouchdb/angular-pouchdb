@@ -61,11 +61,75 @@ describe('angular-pouchdb', function() {
         .finally(done);
     });
 
+    it('should monkey patch PouchDB#bulkDocs', function(done) {
+      var docs = [{}, {}];
+      function success(response) {
+        expect(response.length).toBe(2);
+        response.forEach(shouldBeOK);
+      }
+      db.bulkDocs(docs)
+        .then(success)
+        .catch(shouldNotBeCalled)
+        .finally(done);
+    });
+
+    it('should monkey patch PouchDB#allDocs', function(done) {
+      function success(response) {
+        expect(response.total_rows).toBe(1);
+        expect(response.rows[0].key).toBe('test');
+      }
+
+      function allDocs() {
+        db.allDocs()
+          .then(success)
+          .catch(shouldNotBeCalled)
+          .finally(done);
+      }
+
+      function rawPut($window) {
+        var rawDB = new $window.PouchDB('db');
+        var doc = {_id: 'test'};
+        rawDB.put(doc, function(err) {
+          if (err) {
+            throw err;
+          }
+          allDocs();
+        });
+      }
+
+      inject(rawPut);
+    });
+
+    it('should monkey patch PouchDB#viewCleanup', function(done) {
+      db.viewCleanup()
+        .then(shouldBeOK)
+        .catch(shouldNotBeCalled)
+        .finally(done);
+    });
+
     it('should monkey patch PouchDB#info', function(done) {
       function success(response) {
         expect(response.db_name).toBe('db');
       }
       db.info()
+        .then(success)
+        .catch(shouldNotBeCalled)
+        .finally(done);
+    });
+
+    it('should monkey patch PouchDB#compact', function(done) {
+      db.compact()
+        .then(shouldBeOK)
+        .catch(shouldNotBeCalled)
+        .finally(done);
+    });
+
+    it('should monkey patch PouchDB#revsDiff', function(done) {
+      var diff = {test: ['1']};
+      function success(response) {
+        expect(response.test.missing[0]).toBe('1');
+      }
+      db.revsDiff(diff)
         .then(success)
         .catch(shouldNotBeCalled)
         .finally(done);
