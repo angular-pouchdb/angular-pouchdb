@@ -153,6 +153,12 @@ describe('angular-pouchdb', function() {
     });
   });
 
+  it('should expose a methods property', function() {
+    module('pouchdb', function(pouchDBProvider) {
+      expect(pouchDBProvider.methods).toBeDefined();
+    });
+  });
+
   afterEach(function(done) {
     function tearDown($window) {
       // Use raw PouchDB (and callback) as a sanity check
