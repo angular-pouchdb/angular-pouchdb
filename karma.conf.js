@@ -15,7 +15,10 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
     autoWatch: false,
     singleRun: true,
-    reporters: ['progress','coverage'],
+    reporters: [
+      'progress',
+      'coverage'
+    ],
     preprocessors: {
       'angular-pouchdb.js': ['coverage']
     },
