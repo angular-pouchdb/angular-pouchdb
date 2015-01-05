@@ -14,6 +14,14 @@ module.exports = function(config) {
     ]),
     browsers: ['PhantomJS'],
     autoWatch: false,
-    singleRun: true
+    singleRun: true,
+    reporters: ['progress','coverage'],
+    preprocessors: {
+      'angular-pouchdb.js': ['coverage']
+    },
+    coverageReporter: {
+      type: 'lcov',
+      dir: 'test/coverage'
+    }
   });
 };
