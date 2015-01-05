@@ -115,8 +115,28 @@ describe('Angular-aware PouchDB public API', function() {
     rawPut(putAttachment);
   });
 
-  it('should wrap getAttachment', function() {
-    self.fail('Spec unimplemented');
+  it('should wrap getAttachment', function(done) {
+    function getAttachment() {
+      return db.getAttachment('test', 'test');
+    }
+
+    function success(response) {
+      expect(response.type).toBe('text/plain');
+    }
+
+    function putAttachment(putDocResult) {
+      var id = putDocResult.id;
+      var rev = putDocResult.rev;
+      var attachment = new Blob(['test']);
+
+      db.putAttachment(id, 'test', rev, attachment, 'text/plain')
+        .then(getAttachment)
+        .then(success)
+        .catch(shouldNotBeCalled)
+        .finally(done);
+    }
+
+    rawPut(putAttachment);
   });
 
   it('should wrap removeAttachment', function() {
