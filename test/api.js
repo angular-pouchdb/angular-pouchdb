@@ -159,8 +159,19 @@ describe('Angular-aware PouchDB public API', function() {
     rawPut(putAttachment);
   });
 
-  it('should wrap query', function() {
-    self.fail('Spec unimplemented');
+  it('should wrap query', function(done) {
+    function map() {
+      return;
+    }
+
+    function success(response) {
+      expect(response.total_rows).toBe(0);
+    }
+
+    db.query(map)
+      .then(success)
+      .catch(shouldNotBeCalled)
+      .finally(done);
   });
 
   it('should wrap viewCleanup', function(done) {
