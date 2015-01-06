@@ -6,6 +6,7 @@
   "scripts": {
     "annotate": "ng-annotate -a - > dist/angular-pouchdb.js",
     "build": "mkdir -p dist && npm --silent run wrap | npm run annotate && npm run uglify",
+    "coveralls": "cat test/coverage/*/lcov.info | coveralls",
     "lint": "eslint angular-pouchdb.js test/*.js",
     "postinstall": "bower install",
     "test": "karma start",
@@ -29,6 +30,7 @@
   "homepage": "https://github.com/angular-pouchdb/angular-pouchdb",
   "devDependencies": {
     "bower": "^1.3.12",
+    "coveralls": "^2.11.2",
     "eslint": "^0.11.0",
     "jasmine-core": "^2.1.3",
     "karma": "^0.12.24",
