@@ -29,7 +29,7 @@
   "homepage": "https://github.com/angular-pouchdb/angular-pouchdb",
   "devDependencies": {
     "bower": "^1.3.12",
-    "eslint": "^0.8.2",
+    "eslint": "^0.11.0",
     "jasmine-core": "^2.1.3",
     "karma": "^0.12.24",
     "karma-cli": "0.0.4",

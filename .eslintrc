@@ -40,3 +40,7 @@ rules:
   space-in-brackets:
     - 2
     - never
+  no-inline-comments: 2
+  operator-assignment:
+    - 2
+    - always
