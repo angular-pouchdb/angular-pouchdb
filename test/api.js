@@ -191,7 +191,7 @@ describe('Angular-aware PouchDB public API', function() {
       .finally(done);
   });
 
-  it('should wrap compact', function(done) {
+  xit('should wrap compact', function(done) {
     db.compact()
       .then(shouldBeOK)
       .catch(shouldNotBeCalled)
