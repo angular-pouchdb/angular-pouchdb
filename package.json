@@ -6,7 +6,7 @@
   "scripts": {
     "annotate": "ng-annotate -a - > dist/angular-pouchdb.js",
     "build": "mkdir -p dist && npm --silent run wrap | npm run annotate && npm run uglify",
-    "lint": "eslint *.js test/*.js",
+    "lint": "eslint angular-pouchdb.js test/*.js",
     "postinstall": "bower install",
     "test": "karma start",
     "watch": "karma start --autoWatch true --singleRun false",
