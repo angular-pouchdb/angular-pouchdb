@@ -1,6 +1,7 @@
 # angular-pouchdb
 
 [![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
 
 > AngularJS wrapper for PouchDB
 
@@ -9,8 +10,10 @@ A lightweight AngularJS service for PouchDB that;
 * Wraps Pouch's methods with `$q`
 * Makes Angular aware of asynchronous updates (via `$rootScope.$apply`)
 
-[travis-image]: https://travis-ci.org/angular-pouchdb/angular-pouchdb.svg
+[travis-image]: https://img.shields.io/travis/angular-pouchdb/angular-pouchdb.svg
 [travis-url]: https://travis-ci.org/angular-pouchdb/angular-pouchdb
+[coveralls-image]: https://img.shields.io/coveralls/angular-pouchdb/angular-pouchdb.svg
+[coveralls-url]: https://coveralls.io/r/angular-pouchdb/angular-pouchdb
 
 ## Usage
 
