@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>angular-pouchdb replicate example</title>
+  <meta charset="utf-8" />
+</head>
+<body ng-app="app">
+  <div ng-controller="ExampleCtrl">
+    <input type="text" ng-model="remote" placeholder="Remote DB">
+    <button ng-click="replicate()">Replicate</button>
+    <pre ng-bind="status"></pre>
+  </div>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/pouchdb/dist/pouchdb.js"></script>
+  <script src="angular-pouchdb.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
