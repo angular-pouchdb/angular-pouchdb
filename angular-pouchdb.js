@@ -37,6 +37,9 @@ angular.module('pouchdb', [])
               .on('change', function(change) {
                 return deferred.notify(change);
               })
+              .on('uptodate', function(uptodate) {
+                return deferred.notify(uptodate);
+              })
               .on('complete', function(response) {
                 return deferred.resolve(response);
               })

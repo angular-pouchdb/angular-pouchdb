@@ -70,6 +70,21 @@ describe('Angular-wrapped PouchDB event emitters', function() {
         .catch(error)
         .finally(done);
     });
+
+    it('should notify on uptodate events', function(done) {
+      var opts = {
+        live: true
+      };
+
+      function notify(notification) {
+        expect(notification.ok).toBe(true);
+        done();
+      }
+
+      db.replicate.to('test2', opts).$promise
+        .then(null, null, notify)
+        .catch(shouldNotBeCalled);
+    });
   });
 
   afterEach(function(done) {
