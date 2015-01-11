@@ -87,6 +87,19 @@ describe('Angular-wrapped PouchDB event emitters', function() {
     });
   });
 
+  describe('sync', function() {
+    it('should resolve on complete', function(done) {
+      function success(result) {
+        expect(result.push.ok).toBe(true);
+      }
+
+      db.sync('test-sync').$promise
+        .then(success)
+        .catch(shouldNotBeCalled)
+        .finally(done);
+    });
+  });
+
   afterEach(function(done) {
     function tearDown($window) {
       // Use raw PouchDB (and callback) as a sanity check

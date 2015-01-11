@@ -58,6 +58,7 @@ angular.module('pouchdb', [])
         db.changes = wrap(db.changes);
         db.replicate.to = wrap(db.replicate.to);
         db.replicate.from = wrap(db.replicate.from);
+        db.sync = wrap(db.sync);
 
         return db;
       }
