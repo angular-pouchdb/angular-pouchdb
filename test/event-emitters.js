@@ -43,6 +43,21 @@ describe('Angular-wrapped PouchDB event emitters', function() {
 
       rawPut(changes);
     });
+
+    it('should notify on change events', function(done) {
+      function notify(change) {
+        expect(change.id).toBe('test');
+      }
+
+      function changes() {
+        db.changes().$promise
+          .then(null, null, notify)
+          .catch(shouldNotBeCalled)
+          .finally(done);
+      }
+
+      rawPut(changes);
+    });
   });
 
 
