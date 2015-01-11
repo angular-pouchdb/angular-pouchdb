@@ -60,6 +60,17 @@ describe('Angular-wrapped PouchDB event emitters', function() {
     });
   });
 
+  describe('replicate', function() {
+    it('should reject on error', function(done) {
+      function error(reason) {
+        expect(reason.error).toBe(true);
+      }
+
+      db.replicate.to('http:///').$promise
+        .catch(error)
+        .finally(done);
+    });
+  });
 
   afterEach(function(done) {
     function tearDown($window) {

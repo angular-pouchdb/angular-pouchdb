@@ -47,7 +47,11 @@ angular.module('pouchdb', [])
             return emitter;
           };
         }
+
         db.changes = wrap(db.changes);
+        db.replicate.to = wrap(db.replicate.to);
+        db.replicate.from = wrap(db.replicate.from);
+
         return db;
       }
 
