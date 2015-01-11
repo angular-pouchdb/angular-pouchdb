@@ -7,6 +7,20 @@ describe('Angular-wrapped PouchDB event emitters', function() {
     self.fail(rejection);
   }
 
+  function rawPut(cb) {
+    function put($window) {
+      var rawDB = new $window.PouchDB('db');
+      var doc = {_id: 'test'};
+      rawDB.put(doc, function(err, result) {
+        if (err) {
+          throw err;
+        }
+        cb(result);
+      });
+    }
+    inject(put);
+  }
+
   var db;
   beforeEach(function() {
     var $injector = angular.injector(['ng', 'pouchdb']);
@@ -14,21 +28,23 @@ describe('Angular-wrapped PouchDB event emitters', function() {
     db = pouchDB('db');
   });
 
-  it('should wrap changes', function(done) {
-    function changes() {
-      return db.changes().$promise;
-    }
+  describe('changes', function() {
+    it('should resolve on complete', function(done) {
+      function success(change) {
+        expect(change.results[0].id).toBe('test');
+      }
 
-    function success(change) {
-      expect(change.results[0].id).toBe('test');
-    }
+      function changes() {
+        db.changes().$promise
+          .then(success)
+          .catch(shouldNotBeCalled)
+          .finally(done);
+      }
 
-    db.put({_id: 'test'})
-      .then(changes)
-      .then(success)
-      .catch(shouldNotBeCalled)
-      .finally(done);
+      rawPut(changes);
+    });
   });
+
 
   afterEach(function(done) {
     function tearDown($window) {
