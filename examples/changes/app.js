@@ -15,14 +15,16 @@ angular.module('app', [
     };
 
     function onChange(change) {
-      $scope.docs.push(change.doc);
+      $scope.docs.push(change);
     }
 
-    db.changes({
+    var options = {
       /*eslint-disable camelcase */
       include_docs: true,
       /*eslint-enable camelcase */
-      continuous: true,
-      onChange: onChange
-    });
+      live: true
+    };
+
+    db.changes(options).$promise
+      .then(null, null, onChange);
   });
