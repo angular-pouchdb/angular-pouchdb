@@ -29,13 +29,35 @@ angular.module('pouchdb', [])
         };
       }
 
+      function wrapEventEmitters(db) {
+        function wrap(fn) {
+          return function() {
+            var deferred = $q.defer();
+            var emitter = fn.apply(this, arguments)
+              .on('change', function(change) {
+                return deferred.notify(change);
+              })
+              .on('complete', function(response) {
+                return deferred.resolve(response);
+              })
+              .on('error', function(error) {
+                return deferred.reject(error);
+              });
+            emitter.$promise = deferred.promise;
+            return emitter;
+          };
+        }
+        db.changes = wrap(db.changes);
+        return db;
+      }
+
       return function pouchDB(name, options) {
         var db = new $window.PouchDB(name, options);
         function wrap(method) {
           db[method] = qify(db[method]);
         }
         methods.forEach(wrap);
-        return db;
+        return wrapEventEmitters(db);
       };
     };
   });
