@@ -17,7 +17,7 @@ A lightweight AngularJS service for PouchDB that;
 1. Install `angular-pouchdb` via Bower:
 
     ```bash
-    bower install --save angular-pouchdb/angular-pouchdb
+    bower install --save angular-pouchdb
     ```
 
 2. Add `pouchdb` as a module dependency:
