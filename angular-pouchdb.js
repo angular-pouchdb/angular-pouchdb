@@ -35,10 +35,14 @@ angular.module('pouchdb', [])
             var deferred = $q.defer();
             var emitter = fn.apply(this, arguments)
               .on('change', function(change) {
-                return deferred.notify(change);
+                return deferred.notify({
+                  change: change
+                });
               })
               .on('uptodate', function(uptodate) {
-                return deferred.notify(uptodate);
+                return deferred.notify({
+                  uptodate: uptodate
+                });
               })
               .on('complete', function(response) {
                 return deferred.resolve(response);

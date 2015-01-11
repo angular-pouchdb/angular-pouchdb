@@ -45,8 +45,8 @@ describe('Angular-wrapped PouchDB event emitters', function() {
     });
 
     it('should notify on change events', function(done) {
-      function notify(change) {
-        expect(change.id).toBe('test');
+      function notify(event) {
+        expect(event.change.id).toBe('test');
       }
 
       function changes() {
@@ -76,8 +76,8 @@ describe('Angular-wrapped PouchDB event emitters', function() {
         live: true
       };
 
-      function notify(notification) {
-        expect(notification.ok).toBe(true);
+      function notify(event) {
+        expect(event.uptodate.ok).toBe(true);
         done();
       }
 
