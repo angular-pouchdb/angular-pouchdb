@@ -1,10 +1,10 @@
 'use strict';
 
 describe('angular-pouchdb provider', function() {
-  it('should expose a list constant of wrapped methods', function() {
+  it('should expose a map of method -> wrapFunction', function() {
     module('pouchdb');
-    inject(function(POUCHDB_DEFAULT_METHODS) {
-      expect(angular.isArray(POUCHDB_DEFAULT_METHODS)).toBe(true);
+    inject(function(POUCHDB_METHODS) {
+      expect(angular.isObject(POUCHDB_METHODS)).toBe(true);
     });
   });
 
@@ -16,7 +16,9 @@ describe('angular-pouchdb provider', function() {
 
   it('should support a custom methods list', function() {
     module('pouchdb', function(pouchDBProvider) {
-      pouchDBProvider.methods = ['info'];
+      pouchDBProvider.methods = {
+        info: 'qify'
+      };
     });
     inject(function(pouchDB) {
       var db = pouchDB('db');
