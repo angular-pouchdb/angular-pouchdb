@@ -61,7 +61,7 @@ See the [plugin example](examples/plugins) for a working example.
 ## Authors
 
 * © 2013-2014 Wilfred Springer <http://nxt.flotsam.nl>
-* © 2014 Tom Vincent <http://tlvince.com/contact>
+* © 2014-2015 Tom Vincent <http://tlvince.com/contact>
 
 ## License
 
