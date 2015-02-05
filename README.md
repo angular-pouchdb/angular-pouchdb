@@ -41,14 +41,18 @@ See [examples](examples) for further usage examples.
 
 ## Options
 
-The list of methods to be wrapped with `$q` can be customised by injecting the
-`pouchDBProvider` in an `angular.config` block, for example:
+The list of methods to be wrapped with a decorator can be customised by injecting
+the `pouchDBProvider` in an `angular.config` block, for example:
 
 ```js
-.config(function(pouchDBProvider, POUCHDB_DEFAULT_METHODS) {
-  pouchDBProvider.methods = POUCHDB_DEFAULT_METHODS.concat([
-    'login'
-  ]);
+.config(function(pouchDBProvider, POUCHDB_METHODS) {
+  // Example for pouchdb-authentication
+  var authMethods = {
+    login: 'qify',
+    logout: 'qify',
+    getUser: 'qify'
+  };
+  pouchDBProvider.methods = angular.extend({}, POUCHDB_METHODS, authMethods);
 })
 ```
 
