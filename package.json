@@ -5,6 +5,7 @@
   "main": "dist/angular-pouchdb.js",
   "scripts": {
     "annotate": "ng-annotate -a - > dist/angular-pouchdb.js",
+    "bower-install": "bower install",
     "build": "mkdir -p dist && npm --silent run wrap | npm run annotate && npm run uglify",
     "coveralls": "cat test/coverage/*/lcov.info | coveralls",
     "lint": "eslint angular-pouchdb.js test/*.js",
