@@ -2,7 +2,7 @@
   "name": "angular-pouchdb",
   "version": "2.0.0-rc.1",
   "description": "AngularJS wrapper for PouchDB",
-  "main": "angular-pouchdb.js",
+  "main": "dist/angular-pouchdb.js",
   "scripts": {
     "annotate": "ng-annotate -a - > dist/angular-pouchdb.js",
     "build": "mkdir -p dist && npm --silent run wrap | npm run annotate && npm run uglify",
