@@ -1,6 +1,6 @@
 {
   "name": "angular-pouchdb",
-  "version": "2.0.0-rc.1",
+  "version": "2.0.0-rc.2",
   "description": "AngularJS wrapper for PouchDB",
   "main": "dist/angular-pouchdb.js",
   "scripts": {
