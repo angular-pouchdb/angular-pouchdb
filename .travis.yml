@@ -6,7 +6,22 @@ cache:
   directories:
     - node_modules
     - bower_components
+env:
+  global:
+    # GH_TOKEN
+    secure: nGV9qROOr7mwI8gJAMiDrLt4stoqG7skSoBBJzHlMteRXJX/obRyNA76GY1wFs0klo4WWMQxzWs4yvv3rwFMMKIopP9/fu+lRJ7pokbl5c5czGiYtNwMUPxWHvm7AEVss+ugl/VTpO+DkuWScIgRWSPBmN4s3zmvHrMUop3BWnE=
+notifications:
+  email: false
 before_script:
   - npm run bower-install
 after_script:
   - npm run coveralls
+deploy:
+  provider: npm
+  email: npm@tlvince.com
+  skip_cleanup: true
+  api_key:
+    secure: aFX9DqdPKXiv2LfVe6iFK/+8Dsfl7TsXZaQBoiXm6Xb4krrzliCfhmZGYWotztVhQlRmnCkkj3jdjUmM7SRK9zVoM20OoSyhr+flJHDo9LCsfNpXrjLlAekIjBCaKHTjr4d86GGj4nCLh6zqcHFEjDc8s83vX7FNjMs5MnmvbXE=
+  on:
+    branch: master
+    repo: angular-pouchdb/angular-pouchdb

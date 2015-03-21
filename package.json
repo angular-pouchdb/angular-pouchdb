@@ -1,6 +1,6 @@
 {
   "name": "angular-pouchdb",
-  "version": "2.0.1",
+  "version": "0.0.0-semantically-released",
   "description": "AngularJS wrapper for PouchDB",
   "main": "dist/angular-pouchdb.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "build": "mkdir -p dist && npm --silent run wrap | npm run annotate && npm run uglify",
     "coveralls": "cat test/coverage/*/lcov.info | coveralls",
     "lint": "eslint angular-pouchdb.js test/*.js",
-    "prepublish": "npm run build",
+    "prepublish": "npm run build && semantic-release pre",
+    "postpublish": "semantic-release post",
     "test": "karma start",
     "watch": "karma start --autoWatch true --singleRun false",
     "wrap": "cat prefix.js angular-pouchdb.js suffix.js",
@@ -40,6 +41,7 @@
     "karma-jasmine": "^0.3.3",
     "karma-phantomjs-launcher": "^0.1.4",
     "ng-annotate": "^0.14.1",
+    "semantic-release": "^3.2.0",
     "uglify-js": "^2.4.16",
     "wiredep": "^1.8.2"
   }
