@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/angular-pouchdb/angular-pouchdb",
   "devDependencies": {
+    "bower": "^1.3.12",
     "coveralls": "^2.11.2",
     "eslint": "^0.17.1",
     "jasmine-core": "^2.1.3",
