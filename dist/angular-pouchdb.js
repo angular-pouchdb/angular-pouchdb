@@ -58,10 +58,9 @@ angular.module('pouchdb', [])
     };
   }])
   .provider('pouchDB', ["POUCHDB_METHODS", function(POUCHDB_METHODS) {
-    this.methods = POUCHDB_METHODS;
-    this.$get = ["$window", "pouchDecorators", function($window, pouchDecorators) {
-      var methods = this.methods;
-
+    var self = this;
+    self.methods = POUCHDB_METHODS;
+    self.$get = ["$window", "pouchDecorators", function($window, pouchDecorators) {
       function wrapMethods(db, methods, parent) {
         for (var method in methods) {
           var wrapFunction = methods[method];
@@ -84,7 +83,7 @@ angular.module('pouchdb', [])
 
       return function pouchDB(name, options) {
         var db = new $window.PouchDB(name, options);
-        return wrapMethods(db, methods);
+        return wrapMethods(db, self.methods);
       };
     }];
   }]);
