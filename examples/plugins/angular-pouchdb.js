@@ -1,1 +1,0 @@
-../../angular-pouchdb.js
