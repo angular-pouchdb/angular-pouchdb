@@ -1,0 +1,35 @@
+<h2>
+  <span ng-bind="state.current.data.label"></span>
+  <small>
+    <a
+      class="btn btn-default"
+      ng-click="toggleSource()"
+    >Toggle Source</a>
+  </small>
+</h2>
+
+<div class="row">
+  <div collapse="isCollapsed">
+    <div ng-if="source.err">
+      <div class="col-md-12">
+        <pre ng-bind="source.err.data"></pre>
+      </div>
+    </div>
+    <div ng-if="!source.err">
+      <div class="col-md-6">
+        <h3>JavaScript</h3>
+        <div class="source" hljs source="source.js.data"></div>
+      </div>
+      <div class="col-md-6">
+        <h3>HTML</h3>
+        <div class="source" hljs source="source.html.data"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div ui-view></div>
+  </div>
+</div>

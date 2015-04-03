@@ -1,0 +1,10 @@
+<h2>Examples</h2>
+
+<ul>
+  <li ng-repeat="example in examples">
+    <a
+      ui-sref="{{example.name}}"
+      ng-bind="::example.data.label"
+    ></a>
+  </li>
+</ul>

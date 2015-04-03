@@ -1,0 +1,47 @@
+globals:
+  angular: false
+rules:
+  quotes:
+    - 2
+    - single
+  camelcase: 2
+  curly:
+    - 2
+    - all
+  eqeqeq: 2
+  wrap-iife: 2
+  no-use-before-define: 2
+  new-cap: 2
+  no-undef: 2
+  strict:
+    - 2
+    - global
+  global-strict: 0
+  no-extra-parens: 2
+  brace-style:
+    - 2
+    - 1tbs
+  func-style:
+    - 2
+    - declaration
+  no-nested-ternary: 2
+  no-lonely-if: 2
+  space-after-keywords: 2
+  space-in-brackets: 2
+  block-scoped-var: 2
+  default-case: 2
+  no-else-return: 2
+  no-eq-null: 2
+  no-floating-decimal: 2
+  radix: 2
+  space-in-brackets:
+    - 2
+    - never
+  no-inline-comments: 2
+  operator-assignment:
+    - 2
+    - always
+  indent:
+    - 2
+    - 2
+  space-before-function-parentheses: never

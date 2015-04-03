@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" ui-sref="home">angular-pouchdb</a>
+    </div>
+    <div id="navbar">
+      <ul class="nav navbar-nav">
+        <li class="dropdown" dropdown>
+          <a role="button" class="dropdown-toggle" dropdown-toggle>
+            Examples <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li ng-repeat="example in examples">
+              <a ui-sref="{{example.name}}" ng-bind="::example.data.label"></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/angular-pouchdb/angular-pouchdb">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

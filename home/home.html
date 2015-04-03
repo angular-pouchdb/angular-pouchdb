@@ -1,0 +1,6 @@
+<div>
+  <p ng-if="!readme">Fetching readme</p>
+  <div ng-if="readme">
+    <div ng-bind-html="readme"></div>
+  </div>
+</div>
