@@ -37,7 +37,9 @@ A lightweight AngularJS service for PouchDB that;
     });
     ```
 
-See [examples](examples) for further usage examples.
+See [examples][] for further usage examples.
+
+[examples]: https://angular-pouchdb.github.io/angular-pouchdb/#/examples
 
 ## Options
 
@@ -56,7 +58,9 @@ the `pouchDBProvider` in an `angular.config` block, for example:
 })
 ```
 
-See the [plugin example](examples/plugins) for a working example.
+See the [plugin example][plugins] for a working example.
+
+[plugins]: https://angular-pouchdb.github.io/angular-pouchdb/#/examples/plugins
 
 ## Authors
 
