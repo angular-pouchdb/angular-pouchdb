@@ -5,10 +5,10 @@
 
 > AngularJS wrapper for PouchDB
 
-A lightweight AngularJS service for PouchDB that;
+A lightweight AngularJS service for PouchDB that:
 
 * Wraps Pouch's methods with `$q`
-* Makes Angular aware of asynchronous updates (via `$rootScope.$apply`)
+* Makes Angular aware of asynchronous updates
 
 [travis-image]: https://img.shields.io/travis/angular-pouchdb/angular-pouchdb.svg
 [travis-url]: https://travis-ci.org/angular-pouchdb/angular-pouchdb
