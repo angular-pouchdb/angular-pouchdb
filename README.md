@@ -37,8 +37,38 @@ A lightweight AngularJS service for PouchDB that;
     });
     ```
 
+From then on, PouchDB's standard *promises* [API][] applies. For example:
+
+```js
+angular.controller('MainCtrl', function($log, $scope, pouchDB) {
+  var db = pouchDB('dbname');
+  var doc = { name: 'David' };
+
+  function error(err) {
+    $log.error(err);
+  }
+
+  function get(res) {
+    if (!res.ok) {
+      return error(res);
+    }
+    return db.get(res.id);
+  }
+
+  function bind(res) {
+    $scope.doc = res;
+  }
+
+  db.post(doc)
+    .then(get)
+    .then(bind)
+    .catch(error);
+});
+```
+
 See [examples][] for further usage examples.
 
+[api]: http://pouchdb.com/api.html
 [examples]: https://angular-pouchdb.github.io/angular-pouchdb/#/examples
 
 ## Options
