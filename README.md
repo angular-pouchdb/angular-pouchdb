@@ -132,12 +132,12 @@ angular-pouchdb decorates PouchDB event emitters (such as those used by
 `replicate.{to,from}`) to make them more useful within Angular apps, per the
 following mapping:
 
-Event       [Deferred method][]
------       -------------------
-`change`    `.notify`
-`uptodate`  `.notify`
-`complete`  `.resolve`
-`reject`    `.reject`
+Event      | [Deferred method][]
+-----      | -------------------
+`change`   | `.notify`
+`uptodate` | `.notify`
+`complete` | `.resolve`
+`reject`   | `.reject`
 
 [deferred method]: https://docs.angularjs.org/api/ng/service/$q#the-deferred-api
 
