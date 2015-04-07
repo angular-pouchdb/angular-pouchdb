@@ -143,7 +143,8 @@ the `pouchDBProvider` in an `angular.config` block, for example:
 })
 ```
 
-See the [plugin example][plugins] for a working example.
+This is useful when using PouchDB plugins. See the [plugin example][plugins]
+for a working example.
 
 [plugins]: https://angular-pouchdb.github.io/angular-pouchdb/#/examples/plugins
 
