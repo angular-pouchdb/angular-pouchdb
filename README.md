@@ -15,6 +15,61 @@ A lightweight AngularJS service for PouchDB that:
 [coveralls-image]: https://img.shields.io/coveralls/angular-pouchdb/angular-pouchdb.svg
 [coveralls-url]: https://coveralls.io/r/angular-pouchdb/angular-pouchdb
 
+## Why?
+
+Since PouchDB is asynchronous, you will often need to call `$scope.$apply()`
+before changes are reflected on the UI. For example:
+
+```js
+angular.controller('MyCtrl', function($scope, $window) {
+  var db = $window.PouchDB('db');
+  db.get('id')
+    .then(function(res) {
+      // Binding may/may not be updated depending on whether a digest cycle has
+      // been triggered elsewhere as Angular is unaware that `get` has resolved.
+      $scope.one = res;
+    });
+
+  var db2 = $window.PouchDB('db2');
+  db.get('id')
+    .then(function(res) {
+      $scope.$apply(function() {
+        // Value has been bound within Angular's context, so a digest will be
+        // triggered and the DOM updated
+        $scope.two = res;
+      });
+    });
+});
+```
+
+Writing `$scope.$apply` each time is laborious and we haven't even mentioned
+exception handling or `$digest already in progress` errors.
+
+angular-pouchdb handles `$scope.$apply` for you by wrapping PouchDB's promises
+with `$q`. You can then use its promises as you would with any Angular promise,
+including the `.finally` method (not in the A+ spec).
+
+```js
+angular.controller('MyCtrl', function($scope, pouchDB) {
+  var db = pouchDB('db');
+  db.get('id')
+    .then(function(res) {
+      // Update UI (almost) instantly
+      $scope.one = res;
+    })
+    .catch(function(err) {
+      $scope.err = err;
+    })
+    .finally(function() {
+      $scope.got = true;
+    });
+});
+```
+
+Put another way, angular-pouchdb is **not** required to integrate PouchDB and
+AngularJS; they can and *do* happily work together without it. However,
+angular-pouchdb makes it more *conveniant* to do so.
+
 ## Usage
 
 1. Install `angular-pouchdb` via Bower:
