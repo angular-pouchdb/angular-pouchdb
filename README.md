@@ -126,6 +126,21 @@ See [examples][] for further usage examples.
 [api]: http://pouchdb.com/api.html
 [examples]: https://angular-pouchdb.github.io/angular-pouchdb/#/examples
 
+### Event emitters
+
+angular-pouchdb decorates PouchDB event emitters (such as those used by
+`replicate.{to,from}`) to make them more useful within Angular apps, per the
+following mapping:
+
+Event       [Deferred method][]
+-----       -------------------
+`change`    `.notify`
+`uptodate`  `.notify`
+`complete`  `.resolve`
+`reject`    `.reject`
+
+[deferred method]: https://docs.angularjs.org/api/ng/service/$q#the-deferred-api
+
 ## Options
 
 The list of methods to be wrapped with a decorator can be customised by injecting
