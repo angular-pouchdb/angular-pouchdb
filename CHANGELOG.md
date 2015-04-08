@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.1
+
+* Bump PouchDB to v3.4.0
+
 ## v2.0.0
 
 * Use `$q.when` (#24)
