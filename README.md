@@ -182,7 +182,7 @@ If the method exists synchronously, add the method name to
 
 ```js
 .config(function(pouchDBProvider, POUCHDB_METHODS) {
-  // Example for nowlanlawson/pouchdb-authentication
+  // Example for nolanlawson/pouchdb-authentication
   var authMethods = {
     login: 'qify',
     logout: 'qify',
