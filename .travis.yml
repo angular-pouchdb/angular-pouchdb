@@ -13,6 +13,7 @@ env:
 notifications:
   email: false
 before_script:
+  - npm install --global npm@'^2.0.0'
   - npm run bower-install
 after_script:
   - npm run coveralls
