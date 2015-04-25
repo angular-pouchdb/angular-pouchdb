@@ -143,12 +143,46 @@ Event      | [Deferred method][]
 
 ## Options
 
-The list of methods to be wrapped with a decorator can be customised by injecting
-the `pouchDBProvider` in an `angular.config` block, for example:
+### `pouchDBProvider.methods`
+
+A hash of `pouchDBMethod: decorator` pairs, with arbitrary nesting. Defaults to
+[POUCHDB_METHODS][] (a constant mapping PouchDB's core API).
+
+Example:
+
+```js
+pouchDBProvider.methods = {
+  get: 'qify',
+  replicate: {
+    to: 'eventEmitter'
+  }
+};
+```
+
+[pouchdb_methods]: https://github.com/angular-pouchdb/angular-pouchdb/blob/master/angular-pouchdb.js#L4
+
+### `pouchDBDecorators`
+
+A service containing decorator functions used to wrap PouchDB's. By default,
+this includes `qify` and `eventEmitter`.
+
+Since they're contained in a service, they can be substituted per standard
+dependency injection semantics, or reused outside of angular-pouchdb.
+
+## FAQ
+
+### Does this work with PouchDB plugins?
+
+angular-pouchdb only wraps PouchDB's core API by default. If you need to wrap
+other methods (for example, one exposed by a PouchDB plugin), there are (at
+least) two strategies:
+
+If the method exists synchronously, add the method name to
+`pouchDBProvider.method` in an `angular.config` block, for example:
 
 ```js
 .config(function(pouchDBProvider, POUCHDB_METHODS) {
-  // Example for pouchdb-authentication
+  // Example for nowlanlawson/pouchdb-authentication
   var authMethods = {
     login: 'qify',
     logout: 'qify',
@@ -158,10 +192,18 @@ the `pouchDBProvider` in an `angular.config` block, for example:
 })
 ```
 
-This is useful when using PouchDB plugins. See the [plugin example][plugins]
-for a working example.
+If the method is added after instantiation asynchronously (perhaps via
+a promise), manually apply a [decorator][] to the instance, for example:
 
-[plugins]: https://angular-pouchdb.github.io/angular-pouchdb/#/examples/plugins
+```js
+.controller('myCtrl', function(pouchDB, pouchDBDecorators) {
+  // Example for nolanlawson/pouchdb-find
+  var db = pouchDB('db');
+  db.find = pouchDBDecorators.qify(db.find);
+});
+```
+
+[decorator]: #pouchdbdecorators
 
 ## Authors
 
