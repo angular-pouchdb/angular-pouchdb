@@ -24,7 +24,7 @@ angular.module('pouchdb', [])
       from: 'eventEmitter'
     }
   })
-  .service('pouchDecorators', function($q) {
+  .service('pouchDBDecorators', function($q) {
     this.qify = function(fn) {
       return function() {
         return $q.when(fn.apply(this, arguments));
@@ -59,7 +59,7 @@ angular.module('pouchdb', [])
   .provider('pouchDB', function(POUCHDB_METHODS) {
     var self = this;
     self.methods = POUCHDB_METHODS;
-    self.$get = function($window, pouchDecorators) {
+    self.$get = function($window, pouchDBDecorators) {
       function wrapMethods(db, methods, parent) {
         for (var method in methods) {
           var wrapFunction = methods[method];
@@ -68,7 +68,7 @@ angular.module('pouchdb', [])
             return wrapMethods(db, wrapFunction, method);
           }
 
-          wrapFunction = pouchDecorators[wrapFunction];
+          wrapFunction = pouchDBDecorators[wrapFunction];
 
           if (!parent) {
             db[method] = wrapFunction(db[method]);
