@@ -170,4 +170,6 @@ for a working example.
 
 ## License
 
-Released under the MIT License.
+Released under the [MIT License][mit].
+
+[mit]: http://tlvince.mit-license.org
