@@ -9,7 +9,7 @@
     "build": "mkdir -p dist && npm --silent run wrap | npm run annotate && npm run uglify",
     "coveralls": "cat test/coverage/*/lcov.info | coveralls",
     "lint": "eslint angular-pouchdb.js test/*.js",
-    "prepublish": "npm run build && semantic-release pre",
+    "prepublish": "semantic-release pre",
     "postpublish": "semantic-release post",
     "test": "karma start",
     "watch": "karma start --autoWatch true --singleRun false",
