@@ -212,7 +212,8 @@ describe('Angular-aware PouchDB public API', function() {
   afterEach(function(done) {
     function tearDown($window) {
       // Use raw PouchDB (and callback) as a sanity check
-      $window.PouchDB.destroy('db', function(err, info) {
+      var rawDB = new $window.PouchDB('db');
+      rawDB.destroy(function(err, info) {
         if (err) {
           throw err;
         }
