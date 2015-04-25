@@ -18,6 +18,8 @@ before_script:
   - npm run bower-install
 after_script:
   - npm run coveralls
+before_deploy:
+  - npm config set spin false --global
 deploy:
   provider: npm
   email: npm@tlvince.com
