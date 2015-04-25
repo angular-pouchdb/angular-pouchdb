@@ -178,7 +178,7 @@ other methods (for example, one exposed by a PouchDB plugin), there are (at
 least) two strategies:
 
 If the method exists synchronously, add the method name to
-`pouchDBProvider.method` in an `angular.config` block, for example:
+`pouchDBProvider.methods` in an `angular.config` block, for example:
 
 ```js
 .config(function(pouchDBProvider, POUCHDB_METHODS) {
