@@ -12,8 +12,9 @@ env:
     secure: nGV9qROOr7mwI8gJAMiDrLt4stoqG7skSoBBJzHlMteRXJX/obRyNA76GY1wFs0klo4WWMQxzWs4yvv3rwFMMKIopP9/fu+lRJ7pokbl5c5czGiYtNwMUPxWHvm7AEVss+ugl/VTpO+DkuWScIgRWSPBmN4s3zmvHrMUop3BWnE=
 notifications:
   email: false
-before_script:
+before_install:
   - npm install --global npm@'^2.0.0'
+before_script:
   - npm run bower-install
 after_script:
   - npm run coveralls
