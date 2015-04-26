@@ -18,6 +18,7 @@ before_script:
   - npm run bower-install
 after_script:
   - npm run coveralls
+  - ./scripts/bower-deploy.sh
 deploy:
   provider: npm
   email: npm@tlvince.com

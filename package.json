@@ -11,7 +11,7 @@
     "postbuild": "npm run uglify",
     "coveralls": "cat test/coverage/*/lcov.info | coveralls",
     "lint": "eslint angular-pouchdb.js test/*.js",
-    "prepublish": "semantic-release pre",
+    "prepublish": "npm run build && semantic-release pre",
     "postpublish": "semantic-release post",
     "test": "karma start",
     "watch": "karma start --autoWatch true --singleRun false",
