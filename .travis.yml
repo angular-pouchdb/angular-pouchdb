@@ -13,13 +13,11 @@ env:
 notifications:
   email: false
 before_install:
-  - npm install --global npm@'^2.0.0'
+  - npm config set spin false --global
 before_script:
   - npm run bower-install
 after_script:
   - npm run coveralls
-before_deploy:
-  - npm config set spin false --global
 deploy:
   provider: npm
   email: npm@tlvince.com
