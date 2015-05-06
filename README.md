@@ -208,7 +208,7 @@ a promise), manually apply a [decorator][] to the instance, for example:
 ## Authors
 
 * © 2013-2014 Wilfred Springer <http://nxt.flotsam.nl>
-* © 2014-2015 Tom Vincent <http://tlvince.com/contact>
+* © 2014-2015 Tom Vincent <https://tlvince.com/contact>
 
 ## License
 
