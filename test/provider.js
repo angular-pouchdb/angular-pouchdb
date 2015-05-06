@@ -17,13 +17,21 @@ describe('angular-pouchdb provider', function() {
   it('should support a custom methods list', function() {
     module('pouchdb', function(pouchDBProvider) {
       pouchDBProvider.methods = {
-        info: 'qify'
+        info: 'qify',
+        replicate: {
+          to: 'eventEmitter',
+          from: 'eventEmitter'
+        },
+        search: 'qify',
+        '\uffff': 'qify'
       };
     });
     inject(function(pouchDB) {
       var db = pouchDB('db');
       expect(db.info().finally).toBeDefined();
       expect(db.put().finally).toBeUndefined();
+      expect(db.search).toBeDefined();
+      expect(db['\uffff']).toBeDefined();
     });
   });
 });
