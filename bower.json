@@ -5,7 +5,7 @@
     "Tom Vincent <http://tlvince.com/contact>"
   ],
   "description": "AngularJS wrapper for PouchDB",
-  "main": "dist/angular-pouchdb.js",
+  "main": "angular-pouchdb.js",
   "keywords": [
     "angularjs",
     "pouchdb"
