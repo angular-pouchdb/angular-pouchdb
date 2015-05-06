@@ -11,7 +11,7 @@
     "pouchdb"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/angular-pouchdb/angular-pouchdb",
+  "homepage": "https://angular-pouchdb.github.io/angular-pouchdb/",
   "ignore": [
     "**/*",
     "**/.*",
