@@ -11,16 +11,12 @@ angular.module('home')
     };
 
     function error(err) {
-      var msg = 'Could not load readme';
-      if (err.data && err.data.message) {
-        msg += ': ' + err.data.message;
-      }
-      $scope.readme = msg;
+      $scope.error = err;
     }
 
     function success(res) {
       if (!res.data) {
-        error();
+        error(res);
         return;
       }
       $scope.readme = res.data;

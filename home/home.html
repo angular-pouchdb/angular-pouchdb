@@ -1,6 +1,16 @@
 <div>
-  <p ng-if="!readme">Fetching readme</p>
+  <p ng-if="!readme && !error">Fetching readme</p>
   <div ng-if="readme">
     <div ng-bind-html="readme"></div>
+  </div>
+  <div ng-if="error">
+    <p>Could not load the readme.</p>
+    <div ng-if="error.data.message">
+      <span>The error message was:</span>
+      <pre ng-bind="error.data.message | json"></pre>
+    </div>
+    <p>This could be a result of an GitHub outage, or an issue with its API.</p>
+    <span>Instead, please find the readme on</span>
+    <a href="https://www.npmjs.com/package/angular-pouchdb">npm</a><span>.</span>
   </div>
 </div>
