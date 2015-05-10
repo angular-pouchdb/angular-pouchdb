@@ -1,7 +1,7 @@
 The MIT License
 
 © 2013-2014 Wilfred Springer <http://nxt.flotsam.nl>  
-© 2014 Tom Vincent <http://tlvince.com/contact>
+© 2014-2015 Tom Vincent <https://tlvince.com/contact>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
