@@ -17,7 +17,8 @@
     "**/.*",
     "!README.md",
     "!LICENSE.md",
-    "!angular-pouchdb.js"
+    "!angular-pouchdb.js",
+    "!angular-pouchdb.min.js"
   ],
   "dependencies": {
     "angular": "~1.3.8",
