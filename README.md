@@ -205,6 +205,21 @@ a promise), manually apply a [decorator][] to the instance, for example:
 
 [decorator]: #pouchdbdecorators
 
+### How can I debug this?
+
+Debugging angular-pouchdb in a console can be done by first retrieving the
+injector and calling the `pouchDB` service as normal, e.g.:
+
+```js
+var pouchDB = angular.element(document.body).injector().get('pouchDB');
+var db = pouchDB('mydb');
+db.get('id').then();
+```
+
+For further tips and tricks, see [CouchDB Best Practices][best-practices].
+
+[best-practices]: http://docs.ehealthafrica.org/couchdb-best-practices/
+
 ## Authors
 
 * © 2013-2014 Wilfred Springer <http://nxt.flotsam.nl>
