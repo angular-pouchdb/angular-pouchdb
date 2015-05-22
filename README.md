@@ -220,6 +220,16 @@ For further tips and tricks, see [CouchDB Best Practices][best-practices].
 
 [best-practices]: http://docs.ehealthafrica.org/couchdb-best-practices/
 
+### Can this be used with Browserify?
+
+Yes! For example:
+
+```js
+require('angular').module('app', [
+  require('angular-pouchdb')
+]);
+```
+
 ## Authors
 
 * © 2013-2014 Wilfred Springer <http://nxt.flotsam.nl>
