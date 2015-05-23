@@ -5,7 +5,6 @@ node_js:
 cache:
   directories:
     - node_modules
-    - bower_components
 env:
   global:
     # GH_TOKEN
@@ -14,8 +13,6 @@ notifications:
   email: false
 before_install:
   - npm config set spin false --global
-before_script:
-  - npm run bower-install
 after_script:
   - npm run coveralls
   - ./scripts/bower-deploy.sh

@@ -5,7 +5,6 @@
   "main": "dist/angular-pouchdb.js",
   "scripts": {
     "annotate": "ng-annotate -a - > dist/angular-pouchdb.js",
-    "bower-install": "bower install",
     "prebuild": "mkdir -p dist",
     "build": "npm --silent run wrap | npm run annotate",
     "postbuild": "npm run uglify",
@@ -33,8 +32,10 @@
   },
   "homepage": "https://angular-pouchdb.github.io/angular-pouchdb/",
   "devDependencies": {
-    "bower": "^1.3.12",
+    "angular": "^1.3.15",
+    "angular-mocks": "^1.3.15",
     "coveralls": "^2.11.2",
+    "es5-shim": "^4.1.3",
     "eslint": "^0.21.2",
     "eslint-config-tlvince": "^1.0.0",
     "jasmine-core": "^2.1.3",
@@ -44,8 +45,9 @@
     "karma-jasmine": "^0.3.3",
     "karma-phantomjs-launcher": "^0.1.4",
     "ng-annotate": "^0.14.1",
+    "pouchdb": "^3.5.0",
     "semantic-release": "^3.2.0",
-    "uglify-js": "^2.4.16",
-    "wiredep": "^1.8.2"
+    "tlvince-blob-shim": "^1.0.0",
+    "uglify-js": "^2.4.16"
   }
 }

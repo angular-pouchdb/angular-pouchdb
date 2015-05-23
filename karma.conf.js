@@ -1,17 +1,18 @@
 'use strict';
 /*eslint-env node */
 
-var bowerJS = require('wiredep')({
-  devDependencies: true
-}).js;
-
 module.exports = function(config) {
   config.set({
     frameworks: ['jasmine'],
-    files: bowerJS.concat([
+    files: [
+      'node_modules/angular/angular.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      'node_modules/es5-shim/es5-shim.js',
+      'node_modules/tlvince-blob-shim/Blob.js',
+      'node_modules/pouchdb/dist/pouchdb.js',
       'angular-pouchdb.js',
       'test/*.js'
-    ]),
+    ],
     browsers: ['PhantomJS'],
     autoWatch: false,
     singleRun: true,

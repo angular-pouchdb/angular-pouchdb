@@ -9,7 +9,7 @@ error() { info "$1"; exit 1; }
 [[ "$TRAVIS_PULL_REQUEST" == "false" ]] || error "Not deploying pull requests"
 
 git clone https://github.com/angular-pouchdb/bower-angular-pouchdb.git deploy
-mv bower.json README.md LICENSE.md dist/* deploy
+mv README.md LICENSE.md dist/* deploy
 cd deploy
 git add .
 git config user.email "angular-pouchdb-ci@tlvince.com"
