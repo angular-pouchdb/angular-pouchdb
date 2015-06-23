@@ -20,7 +20,9 @@ describe('Angular-aware PouchDB public API', function() {
   function rawPut(cb) {
     function put($window) {
       var rawDB = new $window.PouchDB('db');
-      var doc = {_id: 'test'};
+      var doc = {
+        _id: 'test'
+      };
       rawDB.put(doc, function(err, result) {
         if (err) {
           throw err;
@@ -45,7 +47,10 @@ describe('Angular-aware PouchDB public API', function() {
   });
 
   it('should wrap put', function(done) {
-    db.put({_id: '1'})
+    var doc = {
+      _id: '1'
+    };
+    db.put(doc)
       .then(shouldBeOK)
       .catch(shouldNotBeCalled)
       .finally(done);
@@ -199,7 +204,9 @@ describe('Angular-aware PouchDB public API', function() {
   });
 
   it('should wrap revsDiff', function(done) {
-    var diff = {test: ['1']};
+    var diff = {
+      test: ['1']
+    };
     function success(response) {
       expect(response.test.missing[0]).toBe('1');
     }
