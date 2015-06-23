@@ -10,7 +10,9 @@ describe('Angular-wrapped PouchDB event emitters', function() {
   function rawPut(cb) {
     function put($window) {
       var rawDB = new $window.PouchDB('db');
-      var doc = {_id: 'test'};
+      var doc = {
+        _id: 'test'
+      };
       rawDB.put(doc, function(err, result) {
         if (err) {
           throw err;
