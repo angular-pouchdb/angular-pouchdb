@@ -3,3 +3,4 @@ npm-debug.log
 test/coverage
 *.tgz
 dist
+bower_components
