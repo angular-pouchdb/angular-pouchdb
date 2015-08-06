@@ -4,3 +4,11 @@ globals:
 rules:
   newline-after-var: 0
   no-continue: 0
+  jasmine/no-suite-dupes:
+    - 2
+    - branch
+  jasmine/no-spec-dupes:
+    - 2
+    - branch
+plugins:
+  - jasmine
