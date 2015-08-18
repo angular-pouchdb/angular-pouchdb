@@ -135,7 +135,7 @@ following mapping:
 Event      | [Deferred method][]
 -----      | -------------------
 `change`   | `.notify`
-`uptodate` | `.notify`
+`paused`   | `.notify`
 `complete` | `.resolve`
 `reject`   | `.reject`
 

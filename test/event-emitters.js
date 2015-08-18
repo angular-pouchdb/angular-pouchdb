@@ -73,13 +73,13 @@ describe('Angular-wrapped PouchDB event emitters', function() {
         .finally(done);
     });
 
-    it('should notify on uptodate events', function(done) {
+    it('should notify on paused events', function(done) {
       var opts = {
         live: true
       };
 
       function notify(event) {
-        expect(event.uptodate.ok).toBe(true);
+        expect(event.hasOwnProperty('paused')).toBe(true);
         done();
       }
 

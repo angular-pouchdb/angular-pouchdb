@@ -22,6 +22,6 @@
   ],
   "dependencies": {
     "angular": "~1.4.1",
-    "pouchdb": "~3.6.0"
+    "pouchdb": "~4.0.0"
   }
 }

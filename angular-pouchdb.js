@@ -40,9 +40,9 @@ angular.module('pouchdb', [])
               change: change
             });
           })
-          .on('uptodate', function(uptodate) {
+          .on('paused', function(paused) {
             return deferred.notify({
-              uptodate: uptodate
+              paused: paused
             });
           })
           .on('complete', function(response) {
