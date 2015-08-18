@@ -8,7 +8,6 @@
     "build": "npm --silent run wrap | npm run annotate",
     "postbuild": "npm run uglify",
     "coveralls": "coveralls < test/coverage/lcov/lcov.info",
-    "lint": "eslint angular-pouchdb.js test/*.js",
     "pretest": "eslint angular-pouchdb.js karma.conf.js test/*.js",
     "test": "karma start",
     "watch": "karma start --autoWatch true --singleRun false",
