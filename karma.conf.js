@@ -25,8 +25,13 @@ module.exports = function(config) {
       'angular-pouchdb.js': ['coverage']
     },
     coverageReporter: {
-      type: 'lcov',
-      dir: 'test/coverage'
+      dir: 'test/coverage',
+      reporters: [
+        {
+          type: 'lcov',
+          subdir: 'lcov'
+        }
+      ]
     }
   });
 };
