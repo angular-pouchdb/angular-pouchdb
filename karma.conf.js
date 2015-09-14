@@ -14,7 +14,10 @@ module.exports = function(config) {
       'angular-pouchdb.js',
       'test/*.js'
     ],
-    browsers: ['PhantomJS'],
+    browsers: [
+      'PhantomJS',
+      'Firefox'
+    ],
     autoWatch: false,
     singleRun: true,
     reporters: [
