@@ -32,7 +32,7 @@
   "homepage": "https://angular-pouchdb.github.io/angular-pouchdb/",
   "devDependencies": {
     "angular": "1.4.6",
-    "angular-mocks": "1.4.6",
+    "angular-mocks": "1.4.7",
     "catw": "1.0.1",
     "coveralls": "2.11.4",
     "es5-shim": "4.1.13",
