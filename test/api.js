@@ -109,7 +109,9 @@ describe('Angular-aware PouchDB public API', function() {
     function putAttachment(putDocResult) {
       var id = putDocResult.id;
       var rev = putDocResult.rev;
-      var attachment = new Blob(['test']);
+      var attachment = new Blob(['test'], {
+        type: 'text/plain'
+      });
 
       db.putAttachment(id, 'test', rev, attachment, 'text/plain')
         .then(shouldBeOK)
@@ -132,7 +134,9 @@ describe('Angular-aware PouchDB public API', function() {
     function putAttachment(putDocResult) {
       var id = putDocResult.id;
       var rev = putDocResult.rev;
-      var attachment = new Blob(['test']);
+      var attachment = new Blob(['test'], {
+        type: 'text/plain'
+      });
 
       db.putAttachment(id, 'test', rev, attachment, 'text/plain')
         .then(getAttachment)
