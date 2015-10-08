@@ -6,11 +6,11 @@ module.exports = function(config) {
   config.set({
     frameworks: ['jasmine'],
     files: [
-      'node_modules/angular/angular.js',
-      'node_modules/angular-mocks/angular-mocks.js',
+      'bower_components/angular/angular.js',
+      'bower_components/angular-mocks/angular-mocks.js',
       'node_modules/es5-shim/es5-shim.js',
       'node_modules/tlvince-blob-shim/Blob.js',
-      'node_modules/pouchdb/dist/pouchdb.js',
+      'bower_components/pouchdb/dist/pouchdb.js',
       'angular-pouchdb.js',
       'test/*.js'
     ],
