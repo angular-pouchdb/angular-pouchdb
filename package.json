@@ -60,11 +60,11 @@
     "repository": {
       "url": "https://github.com/angular-pouchdb/bower-angular-pouchdb.git"
     },
-    "artefacts": {
+    "artefacts": [
       "bower.json",
       "README.md",
       "dist/*"
-    },
+    ],
     "author": "Angular PouchDB CI <angular-pouchdb-ci@tlvince.com>"
   }
 }
