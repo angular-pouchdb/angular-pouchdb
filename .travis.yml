@@ -14,8 +14,7 @@ before_script:
   - npm prune
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-after_script:
-  - npm run coveralls
-  - ./scripts/bower-deploy.sh
 after_success:
   - npm run semantic-release
+  - npm run publish-repo
+  - npm run coveralls

@@ -9,6 +9,8 @@
     "postbuild": "npm run uglify",
     "coveralls": "coveralls < test/coverage/lcov/lcov.info",
     "postinstall": "bower install",
+    "prepublish-repo": "npm run build",
+    "publish-repo": "publish-repo",
     "pretest": "eslint angular-pouchdb.js karma.conf.js test/*.js",
     "test": "karma start",
     "watch": "karma start --autoWatch true --singleRun false",
@@ -48,9 +50,21 @@
     "karma-phantomjs-launcher": "0.1.4",
     "mkdirp": "0.5.1",
     "ng-annotate": "0.14.1",
+    "publish-repo": "^1.0.5",
     "rimraf": "2.4.3",
     "semantic-release": "4.3.5",
     "tlvince-blob-shim": "1.0.0",
     "uglify-js": "2.4.24"
+  },
+  "publishRepo": {
+    "repository": {
+      "url": "https://github.com/angular-pouchdb/bower-angular-pouchdb.git"
+    },
+    "artefacts": {
+      "bower.json",
+      "README.md",
+      "dist/*"
+    },
+    "author": "Angular PouchDB CI <angular-pouchdb-ci@tlvince.com>"
   }
 }
