@@ -8,6 +8,7 @@ angular.module('pouchdb', [])
     get: 'qify',
     remove: 'qify',
     bulkDocs: 'qify',
+    bulkGet: 'qify',
     allDocs: 'qify',
     putAttachment: 'qify',
     getAttachment: 'qify',
@@ -43,6 +44,16 @@ angular.module('pouchdb', [])
           .on('paused', function(paused) {
             return deferred.notify({
               paused: paused
+            });
+          })
+          .on('active', function(active) {
+            return deferred.notify({
+              active: active
+            });
+          })
+          .on('denied', function(denied) {
+            return deferred.notify({
+              denied: denied
             });
           })
           .on('complete', function(response) {
