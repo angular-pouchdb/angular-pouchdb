@@ -68,7 +68,7 @@ angular.controller('MyCtrl', function($scope, pouchDB) {
 
 Put another way, angular-pouchdb is **not** required to integrate PouchDB and
 AngularJS; they can and *do* happily work together without it. However,
-angular-pouchdb makes it more *conveniant* to do so.
+angular-pouchdb makes it more *convenient* to do so.
 
 ## Usage
 
