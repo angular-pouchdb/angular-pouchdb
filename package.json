@@ -8,7 +8,6 @@
     "build": "npm --silent run wrap | npm run annotate",
     "postbuild": "npm run uglify",
     "coveralls": "coveralls < test/coverage/lcov/lcov.info",
-    "postinstall": "bower install",
     "prepublish-repo": "npm run build",
     "publish-repo": "publish-repo",
     "pretest": "eslint angular-pouchdb.js karma.conf.js test/*.js",
