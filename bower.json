@@ -21,10 +21,7 @@
     "!angular-pouchdb.min.js"
   ],
   "dependencies": {
-    "angular": "~1.4.1",
-    "pouchdb": "~5.0.0"
-  },
-  "devDependencies": {
-    "angular-mocks": "~1.4.1"
+    "angular": ">=1 <2",
+    "pouchdb": "5.0.0"
   }
 }
