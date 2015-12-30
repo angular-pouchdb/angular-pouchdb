@@ -89,6 +89,45 @@ describe('Angular-wrapped PouchDB event emitters', function() {
         .then(null, null, notify)
         .catch(shouldNotBeCalled);
     });
+
+    it('should notify on active events', function(done) {
+      var doc = {
+        _id: 'active'
+      };
+
+      var spies = {
+        notify: angular.noop
+      };
+
+      spyOn(spies, 'notify');
+
+      function replicate() {
+        return db.replicate.to('replicate-active').$promise;
+      }
+
+      function hasActiveNotification() {
+        function flatten(prev, current) {
+          return prev.concat(current);
+        }
+
+        function hasActive(args) {
+          return args.hasOwnProperty('active');
+        }
+
+        var spyArgs = spies.notify.calls.allArgs()
+          .reduce(flatten, []);
+
+        expect(spyArgs.some(hasActive)).toBe(true);
+        done();
+      }
+
+      replicate()
+        .then(db.put.bind(db, doc))
+        .then(replicate.bind(db))
+        .then(null, null, spies.notify)
+        .then(hasActiveNotification)
+        .catch(shouldNotBeCalled);
+    });
   });
 
   describe('sync', function() {
