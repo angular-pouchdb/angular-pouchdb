@@ -53,7 +53,7 @@
     "karma-phantomjs-launcher": "0.1.4",
     "mkdirp": "0.5.1",
     "ng-annotate": "0.14.1",
-    "publish-repo": "^1.0.5",
+    "publish-repo": "2.0.0",
     "rimraf": "2.4.3",
     "semantic-release": "4.3.5",
     "tlvince-blob-shim": "1.0.0",
