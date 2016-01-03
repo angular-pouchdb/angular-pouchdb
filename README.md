@@ -47,7 +47,7 @@ exception handling or `$digest already in progress` errors.
 
 angular-pouchdb handles `$scope.$apply` for you by wrapping PouchDB's promises
 with `$q`. You can then use its promises as you would with any Angular promise,
-including the `.finally` method (not in the A+ spec).
+including the `.finally` method (not in the [Promises A+ spec][a+]).
 
 ```js
 angular.controller('MyCtrl', function($scope, pouchDB) {
@@ -69,6 +69,8 @@ angular.controller('MyCtrl', function($scope, pouchDB) {
 Put another way, angular-pouchdb is **not** required to integrate PouchDB and
 AngularJS; they can and *do* happily work together without it. However,
 angular-pouchdb makes it more *convenient* to do so.
+
+[a+]: https://promisesaplus.com/
 
 ## Usage
 
@@ -229,6 +231,87 @@ require('angular').module('app', [
   require('angular-pouchdb')
 ]);
 ```
+
+### Why do promises timeout in my test suite?
+
+*Note*: some (or all) parts of this section may be incorrect or misleading.
+Your input is welcome.
+
+In short, AngularJS uses a different task scheduler than native promises.
+
+Promises can be implemented differently. PouchDB uses native ([A+][]-compliant)
+promises (or [lie][] in environments without native support). Native promises
+are scheduled using "the microtask queue". AngularJS uses its own promise
+implementation; `$q`, which are scheduled via `$evalAsync`.
+
+During normal use, PouchDB's (wrapped) promise is resolved correctly. However
+during testing, suites that use `ngMock` (`angular-mocks`) often unexpectedly
+timeout.
+
+Typically, `$rootScope.$apply()` is used to propagate promise resolution in
+asynchronous tests. This triggers a digest cycle, which in turn flushes
+Angular's `asyncQueue`. Whilst this resolves `$q` promises, it does not resolve
+PouchDB's native promises, hence causing the test runner (e.g. Karma) to
+timeout.
+
+Until Angular's promise implementation is decoupled from its digest cycle and/or
+Angular-specific implementations can be swapped out with their native
+equivalents, there are a few known workarounds:
+
+[lie]: https://github.com/calvinmetcalf/lie
+
+#### Do not use `ngMock`
+
+`ngMock` modifies Angular's deferred implementation in order to support writing
+tests in a synchronous manner. Arguably, this simplifies control flow, but comes
+at the cost of making `$q`-wrapped promises difficult to test.
+
+One workaround (and the one that `angular-pouchdb` currently uses) is to not
+use `ngMock` and manually handle `$injector`, for example:
+
+```js
+describe('Working $q.when tests', function() {
+  var pouchdb;
+  beforeEach(function() {
+    // Note, `ngMock` would usually inject `ng` for us
+    var $injector = angular.injector(['ng', 'test']);
+    var pouchDB = $injector.get('pouchdb');
+    pouchdb = pouchDB('db');
+  });
+
+  it('should resolve a promise', function(done) {
+    pouchdb.info()
+      .then(function(info) {
+        expect(info).toBeDefined();
+      })
+      .finally(done);
+  });
+});
+```
+
+This preserves "normal" promise resolution behaviour, but will not suit all
+scenarios, such as when you need the additional introspection/async control
+features `ngMock` provides e.g. `$httpBackend.flush`.
+
+#### Spam `$rootScope.$apply`
+
+Calling `$rootScope.$apply` in quick succession to cause a near-continuous
+digest cycle forces promise resolution. This appears to be due to tight coupling
+between Angular's promises and its digest cycle.
+
+```js
+it('should wrap destroy', function(done) {
+  // Note, you might want to experiement with a interval timeout here
+  var interval = $window.setInterval($rootScope.$apply.bind());
+  db.destroy()
+    .then(shouldBeOK)
+    .then($window.clearInterval.bind(null, interval))
+    .catch(shouldNotBeCalled)
+    .finally(done);
+})
+```
+
+Note, this is likely to significantly decrease your test's performance.
 
 ## Authors
 
