@@ -232,6 +232,17 @@ require('angular').module('app', [
 ]);
 ```
 
+### Can this be used with webpack?
+
+Yes, though you need to use [expose-loader][] to ensure PouchDB is available as
+a global, for example:
+
+```js
+require('expose?PouchDB!pouchdb');
+```
+
+[expose-loader]: https://github.com/webpack/expose-loader
+
 ### Why do promises timeout in my test suite?
 
 *Note*: some (or all) parts of this section may be incorrect or misleading.
