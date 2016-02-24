@@ -220,7 +220,7 @@ db.get('id').then();
 
 For further tips and tricks, see [CouchDB Best Practices][best-practices].
 
-[best-practices]: http://docs.ehealthafrica.org/couchdb-best-practices/
+[best-practices]: http://ehealthafrica.github.io/couchdb-best-practices/
 
 ### Can this be used with Browserify?
 
