@@ -34,7 +34,7 @@
   "homepage": "https://angular-pouchdb.github.io/angular-pouchdb/",
   "dependencies": {
     "angular": ">=1 <2",
-    "pouchdb": "5.1.0"
+    "pouchdb": "5.3.2"
   },
   "devDependencies": {
     "angular-mocks": ">=1 <2",
