@@ -44,6 +44,7 @@
     "eslint": "0.24.1",
     "eslint-config-tlvince": "1.2.0",
     "eslint-plugin-jasmine": "1.4.0",
+    "ghooks": "1.3.2",
     "jasmine-core": "2.3.4",
     "karma": "0.12.37",
     "karma-cli": "0.0.4",
@@ -57,7 +58,8 @@
     "rimraf": "2.4.3",
     "semantic-release": "4.3.5",
     "tlvince-blob-shim": "1.0.0",
-    "uglify-js": "2.4.24"
+    "uglify-js": "2.4.24",
+    "validate-commit-msg": "2.8.0"
   },
   "publishRepo": {
     "repository": {
@@ -69,5 +71,11 @@
       "dist/*"
     ],
     "author": "Angular PouchDB CI <angular-pouchdb-ci@tlvince.com>"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg",
+      "pre-push": "npm test"
+    }
   }
 }
