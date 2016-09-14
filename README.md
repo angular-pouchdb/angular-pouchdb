@@ -3,9 +3,9 @@
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
 
-> AngularJS wrapper for PouchDB
+> AngularJS v1.x wrapper for PouchDB
 
-A lightweight AngularJS service for PouchDB that:
+A lightweight AngularJS (v1.x) service for PouchDB that:
 
 * Wraps Pouch's methods with `$q`
 * Makes Angular aware of asynchronous updates
@@ -323,6 +323,12 @@ it('should wrap destroy', function(done) {
 ```
 
 Note, this is likely to significantly decrease your test's performance.
+
+### Does this work with Angular v2?
+
+No and it doesn't need to! Angular v2's concept of change detection completely
+differs to Angular v1's; the digest cycle, `$scope.$apply` and friends are no
+more. Just use PouchDB directly.
 
 ## Authors
 
