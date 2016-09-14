@@ -333,7 +333,7 @@ more. Just use PouchDB directly.
 ## Authors
 
 * © 2013-2014 Wilfred Springer <http://nxt.flotsam.nl>
-* © 2014-2015 Tom Vincent <https://tlvince.com/contact>
+* © 2014-2016 Tom Vincent <https://tlvince.com/contact>
 
 ## License
 
