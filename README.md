@@ -131,8 +131,8 @@ See [examples][] for further usage examples.
 ### Event emitters
 
 angular-pouchdb decorates PouchDB event emitters (such as those used by
-`replicate.{to,from}`) to make them more useful within Angular apps, per the
-following mapping:
+`replicate.{to,from}`) with a `.$promise` property to make them more useful
+within Angular apps, per the following mapping:
 
 Event      | [Deferred method][]
 -----      | -------------------
@@ -140,6 +140,25 @@ Event      | [Deferred method][]
 `paused`   | `.notify`
 `complete` | `.resolve`
 `reject`   | `.reject`
+
+For example:
+
+```js
+var db = pouchDB('test');
+db.replicate.to('https://couch.example.com/remote').$promise
+  .then(null, null, function(progress) {
+    console.log('replication status', progress);
+  })
+  .then(function(result) {
+    console.log('replication resolved with', result);
+  })
+  .catch(function(reason) {
+    console.error('replication failed with', reason);
+  })
+  .finally(function() {
+    console.log('done');
+  });
+```
 
 [deferred method]: https://docs.angularjs.org/api/ng/service/$q#the-deferred-api
 
@@ -155,9 +174,7 @@ Example:
 ```js
 pouchDBProvider.methods = {
   get: 'qify',
-  replicate: {
-    to: 'eventEmitter'
-  }
+  replicate: 'replicate'
 };
 ```
 
@@ -166,7 +183,7 @@ pouchDBProvider.methods = {
 ### `pouchDBDecorators`
 
 A service containing decorator functions used to wrap PouchDB's. By default,
-this includes `qify` and `eventEmitter`.
+this includes `qify`, `eventEmitter` and `replicate`.
 
 Since they're contained in a service, they can be substituted per standard
 dependency injection semantics, or reused outside of angular-pouchdb.
