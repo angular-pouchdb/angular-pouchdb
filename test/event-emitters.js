@@ -63,11 +63,19 @@ describe('Angular-wrapped PouchDB event emitters', function() {
   });
 
   describe('replicate', function() {
-    // TODO: restore in PouchDB >5.1.0
-    // See: https://github.com/pouchdb/pouchdb/issues/4595
-    xit('should reject on error', function(done) {  // eslint-disable-line
+    it('should resolve on complete', function(done) {
+      function success(result) {
+        expect(result.ok).toBe(true);
+      }
+      db.replicate.to('test-replicate').$promise
+        .then(success)
+        .catch(shouldNotBeCalled)
+        .finally(done);
+    });
+
+    it('should reject on error', function(done) {
       function error(reason) {
-        expect(reason.error).toBe(true);
+        expect(reason.result.ok).toBe(false);
       }
 
       db.replicate.to('http:///').$promise
