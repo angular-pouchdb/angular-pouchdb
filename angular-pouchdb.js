@@ -20,12 +20,11 @@ angular.module('pouchdb', [])
     revsDiff: 'qify',
     changes: 'eventEmitter',
     sync: 'eventEmitter',
-    replicate: {
-      to: 'eventEmitter',
-      from: 'eventEmitter'
-    }
+    replicate: 'replicate'
   })
   .service('pouchDBDecorators', function($q) {
+    var self = this;
+
     this.qify = function(fn) {
       return function() {
         return $q.when(fn.apply(this, arguments));
@@ -66,6 +65,18 @@ angular.module('pouchdb', [])
         return emitter;
       };
     };
+
+    this.replicate = function(fn, db) {
+      var getter = Object.keys(fn).reduce(function(index, key) {
+        index[key] = self.eventEmitter(db.replicate[key]);
+        return index;
+      }, {});
+      Object.defineProperty(db, 'replicate', {
+        get: function() {
+          return getter;
+        }
+      });
+    };
   })
   .provider('pouchDB', function(POUCHDB_METHODS) {
     var self = this;
@@ -74,6 +85,7 @@ angular.module('pouchdb', [])
       function wrapMethods(db, methods, parent) {
         for (var method in methods) {
           var wrapFunction = methods[method];
+          var wrappedFunction;
 
           if (!angular.isString(wrapFunction)) {
             wrapMethods(db, wrapFunction, method);
@@ -83,11 +95,17 @@ angular.module('pouchdb', [])
           wrapFunction = pouchDBDecorators[wrapFunction];
 
           if (!parent) {
-            db[method] = wrapFunction(db[method]);
+            wrappedFunction = wrapFunction(db[method], db);
+            if (wrappedFunction) {
+              db[method] = wrappedFunction;
+            }
             continue;
           }
 
-          db[parent][method] = wrapFunction(db[parent][method]);
+          wrappedFunction = wrapFunction(db[parent][method]);
+          if (wrappedFunction) {
+            db[parent][method] = wrappedFunction;
+          }
         }
         return db;
       }

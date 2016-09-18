@@ -32,9 +32,12 @@
     "url": "https://github.com/angular-pouchdb/angular-pouchdb/issues"
   },
   "homepage": "https://angular-pouchdb.github.io/angular-pouchdb/",
+  "engines": {
+    "node": ">=4 <5"
+  },
   "dependencies": {
     "angular": ">=1 <2",
-    "pouchdb": "5.4.0"
+    "pouchdb-browser": "6.0.5"
   },
   "devDependencies": {
     "angular-mocks": ">=1 <2",
@@ -44,6 +47,7 @@
     "eslint": "0.24.1",
     "eslint-config-tlvince": "1.2.0",
     "eslint-plugin-jasmine": "1.4.0",
+    "ghooks": "1.3.2",
     "jasmine-core": "2.3.4",
     "karma": "0.12.37",
     "karma-cli": "0.0.4",
@@ -53,11 +57,13 @@
     "karma-phantomjs-launcher": "0.1.4",
     "mkdirp": "0.5.1",
     "ng-annotate": "0.14.1",
-    "publish-repo": "2.0.1",
+    "pouchdb": "6.0.5",
+    "publish-repo": "2.0.3",
     "rimraf": "2.4.3",
     "semantic-release": "4.3.5",
     "tlvince-blob-shim": "1.0.0",
-    "uglify-js": "2.4.24"
+    "uglify-js": "2.4.24",
+    "validate-commit-msg": "2.8.0"
   },
   "publishRepo": {
     "repository": {
@@ -69,5 +75,11 @@
       "dist/*"
     ],
     "author": "Angular PouchDB CI <angular-pouchdb-ci@tlvince.com>"
+  },
+  "config": {
+    "ghooks": {
+      "commit-msg": "validate-commit-msg",
+      "pre-push": "npm test"
+    }
   }
 }

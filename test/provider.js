@@ -18,10 +18,7 @@ describe('angular-pouchdb provider', function() {
     module('pouchdb', function(pouchDBProvider) {
       pouchDBProvider.methods = {
         info: 'qify',
-        replicate: {
-          to: 'eventEmitter',
-          from: 'eventEmitter'
-        },
+        replicate: 'replicate',
         search: 'qify',
         '\uffff': 'qify'
       };
