@@ -10,10 +10,14 @@ A lightweight AngularJS (v1.x) service for PouchDB that:
 * Wraps Pouch's methods with `$q`
 * Makes Angular aware of asynchronous updates
 
+**Disclaimer**: angular-pouchdb works by [monkey patching][] PouchDB's public
+API. Your milage may vary.
+
 [travis-image]: https://img.shields.io/travis/angular-pouchdb/angular-pouchdb.svg
 [travis-url]: https://travis-ci.org/angular-pouchdb/angular-pouchdb
 [coveralls-image]: https://img.shields.io/coveralls/angular-pouchdb/angular-pouchdb.svg
 [coveralls-url]: https://coveralls.io/r/angular-pouchdb/angular-pouchdb
+[monkey patching]: https://en.wikipedia.org/wiki/Monkey_patch
 
 ## Why?
 
