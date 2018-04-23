@@ -32,9 +32,6 @@
     "url": "https://github.com/angular-pouchdb/angular-pouchdb/issues"
   },
   "homepage": "https://angular-pouchdb.github.io/angular-pouchdb/",
-  "engines": {
-    "node": ">=4 <5"
-  },
   "dependencies": {
     "angular": ">=1 <2",
     "pouchdb-browser": "^6.0.7"
